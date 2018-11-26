@@ -17,4 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/check', 'CheckController@edit')->name('check');
+Route::put('/check_update/{id?}', 'CheckController@update')->name('check_update');
+Route::group(['prefix' => '/' ,'middleware' => ['auth','gender']],
+
+    function() {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+});
+
+
+
