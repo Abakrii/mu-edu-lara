@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts=DB::table('posts')
+            ->join('users','posts.user_id','=','users.id')
+            ->select('posts.*','users.name','users.gender')
+            ->where('users.gender',Auth::user()->gender)
+            ->latest()->get() ;
+        return view('home',compact(['posts',$posts]));
     }
 }

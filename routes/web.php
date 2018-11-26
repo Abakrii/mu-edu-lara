@@ -23,8 +23,9 @@ Route::group(['prefix' => '/' ,'middleware' => ['auth','gender']],
 
     function() {
 
-    Route::get('/home', 'HomeController@index')->name('home');
-
+         Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/posts/create', 'PostController@create')->name('posts_create');
+        Route::post('/posts/store', 'PostController@store')->name('posts_store');
 });
 
 
