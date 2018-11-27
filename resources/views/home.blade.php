@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <p class="card-text">{{$post->body}}</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
+                    <a href="{{route('posts_show',['id'=>$post->id])}}" class="btn btn-primary">Read More About post</a>
                 </div>
             </div><br>
         @endforeach
